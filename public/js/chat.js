@@ -32,12 +32,18 @@ $(function($){
 
   $messageForm.submit(function(e){
     e.preventDefault();
-    socket.emit('send message', $messageBox.val());
+    socket.emit('send message', $messageBox.val(), function(data){
+      $chat.append('<span class="error"><b>' + data + '</span></br>');
+    });
     $messageBox.val('');
   });
 
   socket.on('new message', function(data){
-    $chat.append('<b>' + data.nick + ': </b>' + data.msg + '</br>');
+    $chat.append('<span class="message"><b>' + data.nick + ': </b>' + data.msg + '</span></br>');
+  });
+
+  socket.on('whisper', function(data){
+    $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + '</span></br>');
   });
 
 });
