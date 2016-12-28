@@ -17,6 +17,7 @@ mongoose.connect('mongodb://edertxodw:abc123@ds145868.mlab.com:45868/chat-nodejs
 });
 
 var chatSchema = mongoose.Schema({
+  userid: Number,
   nick: String,
   msg: String,
   created: {type: Date, default: Date.now}
@@ -55,7 +56,7 @@ io.sockets.on('connection', function(socket){
           callback('Error! Enter a valid user');
         }
       } else {
-        callback('Error! PLease entera message for your user');
+        callback('Error! Please enter a message for your user');
       }
     } else {
       var newMsg = new Chat({msg: msg, nick: socket.nickname});
@@ -73,4 +74,22 @@ io.sockets.on('connection', function(socket){
   function updateNickNames(){
     io.sockets.emit('usernames', Object.keys(users));
   }
+});
+
+/**
+ * API REST
+ */
+app.get('/get-messages', function(req, res){
+  Chat.find({}, function(err, docs){
+    if(err) throw err;
+    res.send(docs);
+  });
+});
+
+app.get('/new-message/', function(req, res){
+  var newMessage = new Chat({msg: req.msg, nick: req.nick});
+  newMsg.save(function(err){
+    if(err) throw err;
+    io.sockets.emit('new message', {msg: req.body.msg, nick: req.body.nick});
+  });
 });
