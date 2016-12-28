@@ -38,12 +38,22 @@ $(function($){
     $messageBox.val('');
   });
 
+  socket.on('load old msgs', function(docs){
+    for(var i=0;i<docs.length;i++){
+      displayMessages(docs[i]);
+    }
+  });
+
   socket.on('new message', function(data){
-    $chat.append('<span class="message"><b>' + data.nick + ': </b>' + data.msg + '</span></br>');
+    displayMessages(data);
   });
 
   socket.on('whisper', function(data){
     $chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + '</span></br>');
   });
+
+  function displayMessages(data){
+    $chat.append('<span class="message"><b>' + data.nick + ': </b>' + data.msg + '</span></br>');
+  }
 
 });
