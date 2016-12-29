@@ -13,8 +13,9 @@ $(function($){
     e.preventDefault();
     socket.emit('new user', $nickBox.val(), function(data){
       if(data){
-        $('#nick').hide();
-        $('#content').show();
+        $('#chooseNick').hide();
+        $('#chatPanel').show();
+        $('#chatPanel > .panel-footer > form > #message').focus();
       } else {
         $nickError.html('That username is already taken. Try again');
       }
