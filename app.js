@@ -86,8 +86,7 @@ io.sockets.on('connection', function(socket){
   /**
    * Get all messages
    */
-  router.route('/get-messages')
-    .get(function(req, res){
+  app.get('/get-messages', function(req, res){
     Chat.find({}, function(err, docs){
       if(err) throw err;
       res.send(docs);
@@ -97,8 +96,7 @@ io.sockets.on('connection', function(socket){
   /**
    * Create new message
    */
-  router.route('/new-message')
-    .post(function(req, res){
+  app.post('/new-message', function(req, res){
       var newMsg = new Chat();
       newMsg.msg = req.body.msg;
       newMsg.nick = req.body.nick;
@@ -110,7 +108,5 @@ io.sockets.on('connection', function(socket){
         res.json({message: 'Message created!'});
       });
   });
-
-app.use('/api', router);
 
 server.listen(process.env.PORT || 8080);
