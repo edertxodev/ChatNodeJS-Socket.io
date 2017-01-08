@@ -7,3 +7,5 @@ mongoose.connect('mongodb://edertxodw:abc123@ds145868.mlab.com:45868/chat-nodejs
     console.log('Connected to MongoDB');
   }
 });
+
+mongoose.set('debug', true);

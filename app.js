@@ -77,13 +77,6 @@ io.sockets.on('connection', function(socket){
  */
 
   /**
-   * Get the chat template
-   */
-  app.get('/api/chat', function(req, res){
-    res.sendFile('public/index.html', {root: __dirname});
-  });
-
-  /**
    * Get all messages
    */
   app.get('/api/get-all-messages', function(req, res){
@@ -111,7 +104,6 @@ io.sockets.on('connection', function(socket){
   app.post('/api/new-message', function(req, res){
       var newMsg = new Chat();
       newMsg.msg = req.body.msg;
-      newMsg.nick = req.body.nick;
       newMsg.userid = req.body.userid;
 
       newMsg.save(function(err){
@@ -122,4 +114,4 @@ io.sockets.on('connection', function(socket){
       });
   });
 
-server.listen(process.env.PORT || 8080);
+server.listen(process.env.PORT || 3000);
