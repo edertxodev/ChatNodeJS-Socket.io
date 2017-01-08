@@ -115,4 +115,4 @@ var router = express.Router();
 
 app.use('/api', router);
 
-server.listen(8080);
+server.listen(process.env.PORT || 8080);
