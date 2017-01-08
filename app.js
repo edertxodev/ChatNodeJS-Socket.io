@@ -75,15 +75,13 @@ io.sockets.on('connection', function(socket){
 /**
  * API REST
  */
-var router = express.Router();
 
   /**
    * Get the chat template
    */
-  router.route('/chat')
-    .get(function(req, res){
-      res.sendFile('public/index.html', {root: __dirname});
-    });
+  app.get('/chat', function(req, res){
+    res.sendFile('public/index.html', {root: __dirname});
+  });
 
   /**
    * Get all messages
