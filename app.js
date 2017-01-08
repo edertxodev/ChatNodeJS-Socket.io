@@ -79,14 +79,14 @@ io.sockets.on('connection', function(socket){
   /**
    * Get the chat template
    */
-  app.get('/chat', function(req, res){
+  app.get('/api/chat', function(req, res){
     res.sendFile('public/index.html', {root: __dirname});
   });
 
   /**
    * Get all messages
    */
-  app.get('/get-messages', function(req, res){
+  app.get('/api/get-all-messages', function(req, res){
     Chat.find({}, function(err, docs){
       if(err) throw err;
       res.send(docs);
@@ -94,12 +94,25 @@ io.sockets.on('connection', function(socket){
   });
 
   /**
+   * Get all messages from user
+   */
+  app.get('/api/get-messages/:userid', function(req, res){
+    Chat.find({userid: req.params.userid}, function(err, messages){
+      if(err){
+        res.send(err);
+      }
+      res.json(messages);
+    });
+  });
+
+  /**
    * Create new message
    */
-  app.post('/new-message', function(req, res){
+  app.post('/api/new-message', function(req, res){
       var newMsg = new Chat();
       newMsg.msg = req.body.msg;
       newMsg.nick = req.body.nick;
+      newMsg.userid = req.body.userid;
 
       newMsg.save(function(err){
         if(err){
