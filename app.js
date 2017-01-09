@@ -14,7 +14,7 @@ require('./app/db.js');
 /**
  * Get the model of Messages
  */
-var Chat = require('./app/models/Message');
+var Chat = require('./models/Message');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -81,7 +81,9 @@ io.sockets.on('connection', function(socket){
    */
   app.get('/api/get-all-messages', function(req, res){
     Chat.find({}, function(err, docs){
-      if(err) throw err;
+      if(err){
+        throw err;
+      }
       res.send(docs);
     });
   });
@@ -106,12 +108,16 @@ io.sockets.on('connection', function(socket){
       newMsg.msg = req.body.msg;
       newMsg.userid = req.body.userid;
 
-      newMsg.save(function(err){
-        if(err){
-          res.send(err);
-        }
-        res.json({message: 'Message created!'});
-      });
+      if((newMsg.msg != null) || (newMsg.userid != null)){
+        newMsg.save(function(err){
+          if(err){
+            res.send(err);
+          }
+          res.json({message: 'Message created!'});
+        });
+      } else {
+        res.json({message: 'The message cannot be created. You must specify the message content and the userid'});
+      }
   });
 
 server.listen(process.env.PORT || 3000);

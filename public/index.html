@@ -1,40 +1,167 @@
-<div class="container">
-
-  <div class="row col-sm-5">
-    <div id="chatPanel" class="panel panel-default">
-      <div class="panel-heading">
-        <h3>Chat</h3>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat NodeJS - API</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="text-center">Chat NodeJS</h1>
+          <h2 class="text-center">API</h2>
+        </div>
       </div>
-      <div class="panel-body">
-        <div id="chat"></div>
-      </div>
-      <div class="panel-footer">
-        <div class="row">
-          <form id="send-message">
-            <div class="col-sm-10">
-              <input type="text" id="message" class="form-control" placeholder="Enter new message..." />
-            </div>
-            <div class="col-sm-2">
-              <button type="submit" class="btn btn-send">
-                <span class="glyphicon glyphicon-send"></span>
-              </button>
-            </div>
-          </form>
+      <div class="row">
+        <nav class="col-md-2 hidden-xs hidden-sm">
+          <ul class="nav nav-pills nav-stacked">
+            <li>
+              <a href="#uso">Uso</a>
+              <a href="#api">Acceso a la API</a>
+              <a href="#todos">Obtener todos los mensajes</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="col-md-10 col-sm-12">
+          <div class="row" id="uso">
+            <h3>Uso</h3>
+            <p>
+              La aplicación está desarrollada en <b><i>NodeJS</i></b> y <b><i>Socket.io</i></b> y pretende ser una
+              <i>API</i> funcional de un chat con <b>sockets</b> que podemos instalar en cualquier servidor ajeno
+              a nuestras aplicaciones y puede ser accesible desde cualquiera de ellas.
+            </p>
+          </div>
+          <div class="row" id="api">
+            <h3>Acceder a la API</h3>
+            <p>
+              Para acceder a la <i>API</i> lo único que debemos hacer es indicar la ruta de nuestra aplicación, indicando
+              la ruta de la <i>API</i>. Por ejemplo:
+            </p>
+            <p>
+              <code>http://[host]/api/get-all-messages</code>
+            </p>
+            <p>
+              Las rutas devuelven los datos en JSON, por lo que podemos realizar llamadas <b>AJAX</b>
+              desde nuestra aplicación:
+            </p>
+            <p>
+              <pre>
+  $.getJSON('http://[host]/api/get-all-messages', function(data){
+    // ...
+  });
+              </pre>
+            </p>
+          </div>
+          <div class="row" id="todos">
+            <h3>Obtener todos los mensajes</h3>
+            <p>
+              Para visualizar todos los mensajes de la aplicación existe la siguiente ruta:
+            </p>
+            <p>
+              <code>/api/get-all-messages</code>
+            </p>
+            <p>
+              Nos devolverá una cadena similar a esta:
+            </p>
+            <p>
+              <pre>
+  [
+    {
+        "_id": "58725c2d9b916e20aa1ab5c7",
+        "userid": 84,
+        "msg": "Froga",
+        "__v": 0,
+        "created": "2017-01-08T15:35:09.132Z"
+    },
+    {
+        "_id": "58725c449b916e20aa1ab5c8",
+        "userid": 84,
+        "msg": "Froga",
+        "__v": 0,
+        "created": "2017-01-08T15:35:32.811Z"
+    },
+    {
+        "_id": "58725c659b916e20aa1ab5c9",
+        "userid": 1,
+        "msg": "Froga",
+        "__v": 0,
+        "created": "2017-01-08T15:36:05.630Z"
+    }
+  ]
+              </pre>
+            </p>
+          </div>
+          <div class="row">
+            <h3>Obtener mensajes de un usuario</h3>
+            <p>
+              Podremos obtener todos los mensajes de un usuario específico pasando el ID como parámetro
+              en la ruta:
+            </p>
+            <p>
+              <code>/api/get-messages/:userid</code>
+            </p>
+            <p>
+              Si por ejemplo queremos ver los mensajes del usuario <b>84</b>:
+            </p>
+            <p>
+              <code>/api/get-messages/84</code>
+            </p>
+            <p>
+              Nos devolverá una cadena similar a esta:
+            </p>
+            <p>
+              <pre>
+  [
+    {
+        "_id": "58725c2d9b916e20aa1ab5c7",
+        "userid": 84,
+        "msg": "Froga",
+        "__v": 0,
+        "created": "2017-01-08T15:35:09.132Z"
+    },
+    {
+        "_id": "58725c449b916e20aa1ab5c8",
+        "userid": 84,
+        "msg": "Froga",
+        "__v": 0,
+        "created": "2017-01-08T15:35:32.811Z"
+    }
+  ]
+              </pre>
+            </p>
+          </div>
+          <div class="row">
+            <h3>Nuevo mensaje</h3>
+            <p>
+              Para crear un nuevo mensaje debemos hacerlo <u>obligatoriamente</u> desde una llamada a <b>AJAX</b>
+              del tipo <b>POST</b>, especificando el <i>userid</i> (ID del usuario) y el <i>msg</i> (el mensaje):
+            </p>
+            <p>
+              <pre>
+  $.post('https://[host]/api/new-message',
+    {
+      userid: 5,
+      msg: "Texto del mensaje"
+    }
+  ).done(function(data){
+      console.log(data);
+  });
+              </pre>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="row col-sm-2">
-    <div id="users"></div>
-  </div>
-
-</div>
-
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/chat.js"></script>
+    <script>
+      $(function(){
+        $('#myScrollspy').affix({offset: 15});
+      });
+    </script>
+  </body>
+</html>

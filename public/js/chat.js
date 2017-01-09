@@ -1,18 +1,9 @@
 $(function($){
 
   var socket = io.connect();
-  var $users = $('#users');
   var $messageForm = $('#send-message');
   var $messageBox = $('#message');
   var $chat = $('#chat');
-
-  socket.on('usernames', function(data){
-    var html = "";
-    for(var i=0;i<data.length;i++){
-      html += data[i] + '<br/>';
-    }
-    $users.html(html);
-  });
 
   $messageForm.submit(function(e){
     e.preventDefault();
