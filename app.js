@@ -14,7 +14,7 @@ require('./app/db.js');
 /**
  * Get the model of Messages
  */
-var Chat = require('./models/Message');
+var Chat = require('./app/models/Message');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));

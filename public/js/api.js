@@ -4,9 +4,9 @@ $(function(){
     */
   $(window).scroll(function(){
     if($(this).scrollTop() > 120){
-      $('#inicio').fadeIn();
+      $('#inicio').show();
     } else {
-      $('#inicio').fadeOut();
+      $('#inicio').hide();
     }
   });
 
