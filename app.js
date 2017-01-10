@@ -4,7 +4,6 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var path = require('path');
 var bodyParser = require('body-parser');
-var users = {};
 
 /**
  * Connect to DataBase
@@ -16,7 +15,8 @@ require('./app/db.js');
  */
 var Chat = require('./app/models/Message');
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'files')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -76,6 +76,13 @@ io.sockets.on('connection', function(socket){
  * API REST
  */
 
+ /**
+  * Get required files
+  */
+app.get('/js/chat.js', function(req, res){
+  res.sendFile(__dirname + '/files/chat.js');
+})
+
   /**
    * Get all messages (INSECURE - Deleted)
    */
@@ -110,6 +117,13 @@ io.sockets.on('connection', function(socket){
       } else {
         res.json({message: 'The message cannot be created. You must specify the message content and the userid'});
       }
+  });
+
+  /**
+    * Load test page
+    */
+  app.get('/test', function(req, res){
+    res.sendFile(__dirname + '/public/test.html');
   });
 
 server.listen(process.env.PORT || 3000);
