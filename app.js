@@ -16,7 +16,7 @@ require('./app/db.js');
  */
 var Chat = require('./app/models/Message');
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
