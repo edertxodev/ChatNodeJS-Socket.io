@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Test Chat - NodeJS + Socket.io</title>
+    <!-- Call Bootstrap styles (not required) -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <h1>Chat API example</h1>
+      </div>
+      <div class="row">
+        <h3>Get message from user <b>id=1</b></h3>
+        <div id="usr">
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Call jQuery (required) -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Call Bootstrap's script (not required) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- The socket.io client (required) -->
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <!-- Required script file -->
+    <script src="http://localhost:3000/js/chat.js"></script>
+    <script>
+    $(function(){
+      var messages = [];
+      messages.push(getMessages(1));
+      for(var i=0;i<messages.length;i++){
+        console.log(messages[i]);
+      }
+      $.each(messages, function(i, msg){
+        console.log(msg);
+      });
+    });
+    </script>
+  </body>
+</html>
