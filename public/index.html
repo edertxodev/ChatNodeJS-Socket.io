@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
   </head>
-  <body>
+  <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
@@ -16,16 +16,29 @@
         </div>
       </div>
       <div class="row">
-        <nav class="col-md-2 hidden-xs hidden-sm">
-          <ul class="nav nav-pills nav-stacked">
+        <nav class="col-md-2 hidden-xs hidden-sm" id="myScrollspy">
+          <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="122">
+            <li id="inicio">
+              <a href="#">Inicio</a>
+            </li>
             <li>
               <a href="#uso">Uso</a>
+            </li>
+            <li>
               <a href="#api">Acceso a la API</a>
+            </li>
+            <li>
               <a href="#todos">Obtener todos los mensajes</a>
+            </li>
+            <li>
+              <a href="#usuario">Obtener los mensajes de un usuario</a>
+            </li>
+            <li>
+              <a href="#nuevo">Nuevo mensaje</a>
             </li>
           </ul>
         </nav>
-        <div class="col-md-10 col-sm-12">
+        <div class="col-md-10 col-sm-12 col-md-offset-2">
           <div class="row" id="uso">
             <h3>Uso</h3>
             <p>
@@ -94,7 +107,7 @@
               </pre>
             </p>
           </div>
-          <div class="row">
+          <div class="row" id="usuario">
             <h3>Obtener mensajes de un usuario</h3>
             <p>
               Podremos obtener todos los mensajes de un usuario específico pasando el ID como parámetro
@@ -133,7 +146,7 @@
               </pre>
             </p>
           </div>
-          <div class="row">
+          <div class="row" id="nuevo">
             <h3>Nuevo mensaje</h3>
             <p>
               Para crear un nuevo mensaje debemos hacerlo <u>obligatoriamente</u> desde una llamada a <b>AJAX</b>
@@ -158,10 +171,6 @@
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-      $(function(){
-        $('#myScrollspy').affix({offset: 15});
-      });
-    </script>
+    <script src="/js/api.js"></script>
   </body>
 </html>
