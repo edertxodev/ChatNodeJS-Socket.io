@@ -1,7 +1,9 @@
 $(function($){
 
   var socket = io.connect();
-  var $messageForm = $('#send-message');
+
+
+  /*var $messageForm = $('#send-message');
   var $messageBox = $('#message');
   var $chat = $('#chat');
 
@@ -29,6 +31,22 @@ $(function($){
 
   function displayMessages(data){
     $chat.append('<span class="message"><b>' + data.nick + ': </b>' + data.msg + '</span></br>');
-  }
+  }*/
+
+  /*socket.on('load old msgs', function(data){
+    for(var i=0;i<data.length;i++){
+      usrMsg.append('<span class="message"><b>' + data[i].userid + ': </b>' + data[i].msg + '</span></br>');
+    }
+  });*/
 
 });
+
+function getMessages(userid){
+  $.getJSON('/api/get-messages/' + userid, function(data){
+    var msgs = [];
+    $.each(data, function(i, message){
+      msgs.push()
+    })
+    return data;
+  });
+}
