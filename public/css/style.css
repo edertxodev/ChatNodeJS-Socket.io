@@ -9,11 +9,28 @@ nav > ul {
   position: fixed;
 }
 
-  nav > ul > li.active > a {
+  #inicio {
+    display: none;
+  }
+
+  .nav > li.active > a {
     background-color: inherit !important;
     font-weight: bold !important;
     color: #333 !important;
   }
+
+    .nav .nav {
+      display: none;
+    }
+
+      .nav .nav li {
+        padding-left: 20px;
+        font-size: 12px;
+      }
+
+    .nav .active .nav {
+      display: block;
+    }
 
 h1, h2 {
   font-family: 'Lemonada', cursive;
@@ -40,10 +57,6 @@ p {
 pre {
   margin-left: 100px;
   margin-right: 100px;
-}
-
-#inicio {
-  display: none;
 }
 
 #chooseNick {

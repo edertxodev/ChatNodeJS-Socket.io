@@ -17,21 +17,23 @@
       </div>
       <div class="row">
         <nav class="col-md-2 hidden-xs hidden-sm" id="myScrollspy">
-          <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="122">
+          <ul class="nav affix" data-spy="affix" data-offset-top="122">
             <li id="inicio">
-              <a href="#">Inicio</a>
+              <a href="">Inicio</a>
             </li>
             <li>
               <a href="#uso">Uso</a>
             </li>
             <li>
-              <a href="#api">Acceso a la API</a>
-            </li>
-            <li>
-              <a href="#usuario">Obtener los mensajes de un usuario</a>
-            </li>
-            <li>
-              <a href="#nuevo">Nuevo mensaje</a>
+              <a href="#api">API</a>
+              <ul class="nav">
+                <li>
+                  <a href="#usuario">Obtener los mensajes de un usuario</a>
+                </li>
+                <li>
+                  <a href="#nuevo">Nuevo mensaje</a>
+                </li>
+              </ul>
             </li>
           </ul>
         </nav>
@@ -45,13 +47,13 @@
             </p>
           </div>
           <div class="row" id="api">
-            <h3>Acceder a la API</h3>
+            <h3>API</h3>
             <p>
               Para acceder a la <i>API</i> lo único que debemos hacer es indicar la ruta de nuestra aplicación, indicando
               la ruta de la <i>API</i>. Por ejemplo:
             </p>
             <p>
-              <code>http://[host]/api/get-all-messages</code>
+              <code>http://[host]/api/[método]</code>
             </p>
             <p>
               Las rutas devuelven los datos en JSON, por lo que podemos realizar llamadas <b>AJAX</b>
@@ -59,7 +61,7 @@
             </p>
             <p>
               <pre>
-  $.getJSON('http://[host]/api/get-all-messages', function(data){
+  $.getJSON('http://[host]/api/get-messages/1', function(data){
     // ...
   });
               </pre>
