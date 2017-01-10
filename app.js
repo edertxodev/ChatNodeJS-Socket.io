@@ -93,7 +93,7 @@ app.get('/js/chat.js', function(req, res){
   app.get('/api/get-messages/:userid', function(req, res){
     Chat.find({userid: req.params.userid}, function(err, messages){
       if(err){
-        res.send(err);
+        res.send(err.errors);
       }
       res.json(messages);
     });
