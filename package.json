@@ -1,9 +1,12 @@
 {
   "name": "ChatNodeJS",
-  "version": "1.0",
-  "private": "true",
+  "version": "1.0.0",
+  "main": "app.js",
+  "private": true,
+  "description": "Socket.io Chat API",
   "dependencies": {
-      "express": "^4.14.0",
-    "socket.io": "^1.7.2"
+    "express": "^4.14.0",
+    "socket.io": "^1.7.2",
+    "body-parser": "^1.15.2"
   }
 }
