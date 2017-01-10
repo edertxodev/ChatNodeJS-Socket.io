@@ -40,13 +40,3 @@ $(function($){
   });*/
 
 });
-
-function getMessages(userid){
-  $.getJSON('/api/get-messages/' + userid, function(data){
-    var msgs = [];
-    $.each(data, function(i, message){
-      msgs.push()
-    })
-    return data;
-  });
-}

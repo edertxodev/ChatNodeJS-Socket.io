@@ -30,14 +30,14 @@
     <script src="http://localhost:3000/js/chat.js"></script>
     <script>
     $(function(){
-      var messages = [];
-      messages.push(getMessages(1));
-      for(var i=0;i<messages.length;i++){
-        console.log(messages[i]);
+      var msgs = getMessages(1);
+      console.log(msgs);
+
+      function getMessages(userid){
+        $.getJSON('/api/get-messages/' + userid, function(data){
+          return data;
+        });
       }
-      $.each(messages, function(i, msg){
-        console.log(msg);
-      });
     });
     </script>
   </body>
