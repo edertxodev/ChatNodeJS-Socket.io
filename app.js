@@ -77,16 +77,8 @@ io.sockets.on('connection', function(socket){
  */
 
   /**
-   * Get all messages
+   * Get all messages (INSECURE - Deleted)
    */
-  app.get('/api/get-all-messages', function(req, res){
-    Chat.find({}, function(err, docs){
-      if(err){
-        throw err;
-      }
-      res.send(docs);
-    });
-  });
 
   /**
    * Get all messages from user

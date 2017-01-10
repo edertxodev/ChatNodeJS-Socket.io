@@ -28,9 +28,6 @@
               <a href="#api">Acceso a la API</a>
             </li>
             <li>
-              <a href="#todos">Obtener todos los mensajes</a>
-            </li>
-            <li>
               <a href="#usuario">Obtener los mensajes de un usuario</a>
             </li>
             <li>
@@ -65,45 +62,6 @@
   $.getJSON('http://[host]/api/get-all-messages', function(data){
     // ...
   });
-              </pre>
-            </p>
-          </div>
-          <div class="row" id="todos">
-            <h3>Obtener todos los mensajes</h3>
-            <p>
-              Para visualizar todos los mensajes de la aplicación existe la siguiente ruta:
-            </p>
-            <p>
-              <code>/api/get-all-messages</code>
-            </p>
-            <p>
-              Nos devolverá una cadena similar a esta:
-            </p>
-            <p>
-              <pre>
-  [
-    {
-        "_id": "58725c2d9b916e20aa1ab5c7",
-        "userid": 84,
-        "msg": "Froga",
-        "__v": 0,
-        "created": "2017-01-08T15:35:09.132Z"
-    },
-    {
-        "_id": "58725c449b916e20aa1ab5c8",
-        "userid": 84,
-        "msg": "Froga",
-        "__v": 0,
-        "created": "2017-01-08T15:35:32.811Z"
-    },
-    {
-        "_id": "58725c659b916e20aa1ab5c9",
-        "userid": 1,
-        "msg": "Froga",
-        "__v": 0,
-        "created": "2017-01-08T15:36:05.630Z"
-    }
-  ]
               </pre>
             </p>
           </div>
